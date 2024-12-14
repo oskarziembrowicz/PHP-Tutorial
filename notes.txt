@@ -1,0 +1,234 @@
+PHP code needs to be written between: <?php	…	>
+
+PRINTING ----------------------------
+
+To print something on the page use:
+echo"Text to print";
+
+To end line use "<br>"
+
+To print a variable, do it like:
+echo "Text {$var_name}";
+
+-------------------------------------
+VARIABLES ---------------------------
+
+PHP has indirect typing
+
+To define variable do it like:
+$var_name = value
+
+-------------------------------------
+OPERATORS ---------------------------
+
+** - power
+% - mod
+++ / += - increment
+-- / -= - decrement
+
+Math:
+abs()
+round()
+floor()
+ceil()
+sqrt()
+pow()
+max() - can take many numbers
+min() - can take many numbers
+pi() - prints int (no arguments)
+rand() - random int; rand(x, y) - random int between x and y
+
+-------------------------------------
+GET and POST ------------------------
+
+These are global variables containing data sent to the code
+
+Use $_GET to access some data send to the file - this will append it to the URL
+$_POST doesn't append data to URL
+Use them like:
+$_GET["var_name"]
+
+Both $_GET and $_POST are associative arrays
+
+---------------------------------------------------------------------
+IF STATEMENTS, LOGICAL OPERATORS, SWITCH, LOOPS ---------------------
+
+The same as in C++
+
+----------------------------------------------------------------------
+ARRAY ----------------------------------------------------------------
+
+$arr = array(val1, val2, val3, ...)
+
+You can't automatically print an array
+
+You can use foreach, like:
+foreach($arr as $el) {
+   ...
+}
+
+You can add element at the end of an array, like:
+array_push($arr, val1, val2, ...)
+
+You can remove last element from an array, like:
+arra_pop($arr)
+
+You can remove first element from an array, like:
+array_shift($arr)
+
+You can reverse an array (this returns new array - not in place), like:
+$new_arr = array_reverse($arr)
+
+To get the length of array use:
+count($arr)
+
+----------------------------------------------------------------------
+ASSOCIATIVE ARRAY ----------------------------------------------------
+Dictionary or Map
+
+To define associative array do it like:
+$arr = array($key1=>$val1, $key2=>$val2, ...)
+
+To loop through it using foreach, do it like:
+foreach($arr as $key => $value) {}
+
+To change value of some key do it like:
+$arr[$key] = $new_val
+
+To add new element, do it like:
+$arr[$new_key] = $new_val
+
+You can use array_pop() and array_shift() to remove elements
+
+You can get a list of keys or values, like:
+array_keys($arr);	array_values($arr)
+
+You can flip keys and values, like:
+$new_arr = array_flip($arr)
+
+You can reverse the order of elements, like:
+$new_arr = array_reverse($arr)
+
+You can get number of pairs, like:
+count($arr)
+
+----------------------------------------------------------------------
+CHECK EMPINESS ------------------------------------
+
+To see if a variable is set use:
+isset($var)
+TRUE if $var is set and not NULL
+
+To see if a variable is empty use:
+empty($var)
+TRUE if $var is not declared, NULL, false or ""
+
+---------------------------------------------------
+CHECKBOXES ----------------------------------------
+
+You can have values of all checked checkboxes
+in one array if you set all of there names like:
+name="arr_name[]"
+
+All of the checked values will be added
+to the arr_name array, which you can access
+via $_POST["arr_name"]
+
+---------------------------------------------------
+FUNCTIONS -----------------------------------------
+
+function function_name() {}
+
+You can force a type of arguments like:
+function function_name(type $arg1, type $arg2) {}
+
+---------------------------------------------------
+STRINGS -------------------------------------------
+
+To use a special sign in a string use '\' like:
+"The price is \$2.33"
+
+To concatenate strings use:
+"text1" . "text2"
+
+All of there functions return new strings,
+they do not change them in place
+- strtolower($str)
+- srttoupper($str)
+- trim($str) - removes white spaces before and after
+- str_pad($str, $n, $ch) - padds the $str with character $ch so its $n chars long
+- str_replace($str, $ch1, $ch2) - replaces all $ch1 with $ch2
+- strrev($str) - reverses the string
+- str_shuffle($str) - shuffle the string
+- strcmp($str1, $str2) - if not equal return 0, else return 1 or -1
+- strlen($str) - length of $str
+- strpos($str, $ch) - index of the first $ch in $str
+- substring($str, $start, $end) - returns substring of $str,
+  if you don't specify second index, it will be last index by default
+- explode($splitter, $str) - turns string to array of string separating by $splitter character
+- imlpode($sep, $arr) - turns array into string with $sep as separator
+
+---------------------------------------------------
+SANITAZING USER INPUT -----------------------------
+
+You can make sure that no malicious code is injected to input by user, like:
+$input_value = filter_input(INPUT_POST, $field_name, FILTER_SANITIZE_SPECIAL_CHARS);
+This allows you to safely use POST
+
+You can also use other sanitizers, like:
+FILTER_SANITIZE_NUMBER_INT, FILTER_SANITIZE_EMAIL, and others…
+
+You can also validate the input using arguments like:
+FILTER_VALIDATE_INT, FILTER_VALIDATE_EMAIL and others…
+
+---------------------------------------------------
+INCLUDE -------------------------------------------
+
+You can "paste" files into current file using:
+include($file_path);
+For example you can do that to include an outside html file
+
+---------------------------------------------------
+COOKIE --------------------------------------------
+
+To create a cookie you do it like:
+setcookie($name, $value, $exp_date, $path) - path is usually set to "/"
+
+To delete a cookie use the same function but set time to: time() - 0
+
+To read a cookie use:
+$_COOKIE[$cookie_name]
+
+---------------------------------------------------
+SESSION -------------------------------------------
+
+To start a session use:
+session_start()
+Remember to start a session on every page you want to use it on
+
+To destroy a session use:
+session_destroy()
+You only need to do this in one place
+
+To save data in a session use:
+$_SESSION[$data_name] = $data;
+Use this also to read data from session
+
+To direct user to a different page use:
+header("Location: file_path")
+
+---------------------------------------------------
+SERVER --------------------------------------------
+
+You can access server metadata using super-global variable:
+$_SERVER
+For example for the php file location:
+$_SERVER["PHP_SELF"]
+A good idea is to enclose it in a filter, like:
+htmlspecialchars()
+This prevents some kinds of attacks
+
+With this you can use more reliable way of checking if a request was sent, like:
+if($_SERVER["REQUEST_METHOD"] == "POST") {}
+
+---------------------------------------------------
