@@ -240,3 +240,19 @@ PASSWORD_DEFAULT is one of many hashing algorithms
 
 To compare something with hashed password, do it like:
 password_verify($plaintext, $hash)
+
+---------------------------------------------------
+DATABASE ------------------------------------------
+
+To connect to SQLi database do it like:
+$connection = mysqli_connect($db_server, $db_user, $db_password, $db_name);
+
+To disconnect from a databes use:
+mysqli_close($connection)
+
+To send a query to a database, do it like:
+mysqli_query($connection, $sql_query)
+$sql_query is a string with the query
+Remember to use this in a try{} block
+
+---------------------------------------------------
