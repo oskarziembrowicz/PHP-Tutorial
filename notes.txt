@@ -253,6 +253,12 @@ mysqli_close($connection)
 To send a query to a database, do it like:
 mysqli_query($connection, $sql_query)
 $sql_query is a string with the query
-Remember to use this in a try{} block
+You can store the result in a variable
+
+To check number of rows returned by database after sql query, do it like:
+mysqli_num_rows($response)
+
+To get associative array from the sql response, do it like:
+mysqli_fetch_assoc($response)		- the keys will be column names
 
 ---------------------------------------------------
