@@ -232,3 +232,11 @@ With this you can use more reliable way of checking if a request was sent, like:
 if($_SERVER["REQUEST_METHOD"] == "POST") {}
 
 ---------------------------------------------------
+HASHING -------------------------------------------
+
+To hash a password use:
+password_hash($password, PASSWORD_DEFAULT)
+PASSWORD_DEFAULT is one of many hashing algorithms
+
+To compare something with hashed password, do it like:
+password_verify($plaintext, $hash)
